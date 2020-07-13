@@ -20,8 +20,8 @@ namespace DatingApp.API.Controllers
         private readonly IConfiguration _config;
         public AuthController(IAuthRepository repo, IConfiguration config)
         {
-            _repo = repo;
             _config = config;
+            _repo = repo;
         }
 
         [HttpPost("register")]
@@ -45,6 +45,7 @@ namespace DatingApp.API.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
+            
             //check if exist matchig user in database. toLower cause we store the username in db in lowercase
             var userFromRepo = await _repo.Login(userForLoginDto.UserName.ToLower(), userForLoginDto.Password);
 
